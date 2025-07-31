@@ -1,12 +1,10 @@
-is_train: true
 additional_info: "과제 1"
 seed: 42
 deterministic: false
 hf_token: ""
 use_lora: true
 use_qlora: false
-data_raw_dir: "data/rag_results" # rag 결과 디렉토리: data/rag_results, 일반 디렉토리: data/raw
-data_rag_dir: "data/rag"
+data_raw_dir: "data/other_for_conf"
 prompt_version: "task1_1"
 data_question_length_limit: -1 # 800 # -1 means no limit
 data_shuffle: false

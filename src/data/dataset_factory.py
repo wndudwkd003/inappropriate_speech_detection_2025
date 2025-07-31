@@ -1,5 +1,5 @@
-from src.data.sft_dataset import SFTDataset
-from src.data.dpo_dataset import DPODataset
+from data.datasets.sft_dataset import SFTDataset
+from data.datasets.dpo_dataset import DPODataset
 from src.configs.config_manager import ConfigManager
 
 class DatasetFactory:

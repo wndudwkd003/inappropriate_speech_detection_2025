@@ -3,7 +3,7 @@ from typing import TypeVar
 from datasets import Dataset as HFDataset          # ★ 추가
 from src.configs.config_manager import ConfigManager
 from src.data.dataset_factory import DatasetFactory
-from src.data.dpo_dataset import DPODataset
+from data.datasets.dpo_dataset import DPODataset
 from datasets import Dataset as HFDataset
 
 T = TypeVar("T")

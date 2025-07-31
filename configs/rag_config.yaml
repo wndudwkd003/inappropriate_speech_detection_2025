@@ -15,4 +15,4 @@ source_files:
 - data/rag/corpus.pdf
 style: pdf
 top_k: 3
-use_rag: true
+use_rag: false

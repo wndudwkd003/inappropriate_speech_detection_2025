@@ -13,7 +13,7 @@ early_stopping: 5
 early_stopping_threshold: 0.001
 max_new_tokens: 2048
 max_seq_length: 4096
-model_id: kakaocorp/kanana-1.5-8b-instruct-2505
+model_id: skt/kobert-base-v1
 
 load_in_4bit: false
 load_in_8bit: false

@@ -1,6 +1,6 @@
 # src/tune/trainer/sft_tune_trainer.py
 from src.train.sft_trainer import UnslothSFTTrainer
-from src.data.sft_dataset import SFTDataset
+from data.datasets.sft_dataset import SFTDataset
 from transformers import TrainingArguments, EarlyStoppingCallback
 from src.data.dataset import DataCollatorForSupervisedDataset
 from trl import SFTTrainer

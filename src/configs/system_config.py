@@ -3,7 +3,6 @@ from src.data.prompt_manager import PromptVersion
 
 @dataclass
 class SystemConfig:
-    is_train: bool = True
     additional_info: str = "" # it will be concatenated to other configs
     seed: int = 42
     deterministic: bool = True
@@ -11,7 +10,6 @@ class SystemConfig:
     use_lora: bool = True
     use_qlora: bool = False
     data_raw_dir: str = "data/raw"
-    data_rag_dir: str = "data/rag"
     data_hangul_info: bool = True
 
     prompt_version: PromptVersion = PromptVersion.V1

@@ -2,7 +2,7 @@ from unsloth import FastLanguageModel
 from trl import SFTTrainer
 from transformers import TrainingArguments, EarlyStoppingCallback
 from src.train.base_trainer import BaseTrainer
-from src.data.sft_dataset import SFTDataset
+from data.datasets.sft_dataset import SFTDataset
 from src.data.dataset import DataCollatorForSupervisedDataset
 from dataclasses import asdict
 import os
