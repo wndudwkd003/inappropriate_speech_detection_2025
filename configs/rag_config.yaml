@@ -1,0 +1,18 @@
+batch_size: 32
+chunk_overlap: 20
+chunk_size: 150
+context_field: retrieved_context
+context_text: '[관련 정보]'
+corpus_name: corpus.json
+hybrid_alpha: 0.5
+index_dir: data/rag_results/index
+index_name: index.faiss
+min_last_chunk_ratio: 0.2
+model_id: nlpai-lab/KURE-v1
+output_dir: data/rag_results
+retriever_type: dense
+source_files:
+- data/rag/corpus.pdf
+style: pdf
+top_k: 3
+use_rag: true

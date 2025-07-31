@@ -1,0 +1,61 @@
+# 출력 디렉토리 - 실행 시 자동으로 변경됨
+output_dir: "output"
+seed: 42
+
+# 학습 에폭 수
+num_train_epochs: 5
+max_steps: -1 # -1은 전체 에폭 수에 따라 자동으로 계산됨, 디버깅 용도
+
+# 배치 크기 설정
+per_device_train_batch_size: 1
+per_device_eval_batch_size: 1
+eval_accumulation_steps: 1
+gradient_accumulation_steps: 1  # GLOBAL_BATCH_SIZE // (per_device_train_batch_size * NUM_DEVICES)
+
+# 평가 및 저장 전략
+eval_strategy: "steps"  # "no", "epoch", "steps"
+save_strategy: "steps"  # "no", "epoch", "steps"
+eval_steps: 100 # 613 100
+save_steps: 100 # 613 100
+logging_steps: 25
+
+# 학습률 및 스케줄러
+learning_rate: 2.0e-5
+weight_decay: 0.01
+warmup_ratio: 0.03
+lr_scheduler_type: "cosine_with_restarts"  # "linear", "cosine", "cosine_with_restarts", "polynomial", "constant", "constant_with_warmup"
+
+# 저장 설정
+save_total_limit: 1
+logging_dir: "logs"
+
+# 리포팅
+report_to:
+  - "tensorboard"
+# 또는 report_to: null  # None인 경우
+
+# 정밀도 설정
+# model_config.yaml에서 dtype 설정에 따라 자동으로 결정됨
+# fp16: false
+# bf16: false
+
+# 기타 학습 설정
+# packing: false
+# gradient_checkpointing: true
+# activation_offloading: false
+# use_cache: false
+
+# 레이블 설정
+label_names:
+  - "labels"
+
+# 최적 모델 로드 설정
+load_best_model_at_end: true
+metric_for_best_model: "eval_loss"
+greater_is_better: false
+
+# 옵티마이저
+optim: "adamw_torch"  # "adamw_torch", "adamw_hf", "adamw_8bit", "paged_adamw_8bit"
+
+# 허브에 푸시 설정
+push_to_hub: false

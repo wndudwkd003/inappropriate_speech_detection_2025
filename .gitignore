@@ -1,0 +1,13 @@
+data/
+output/
+src/configs/tokens/
+logs/
+output/
+output_backup/
+output_tune/
+unsloth_compiled_cache/
+
+!src/data/
+
+__pycache__/
+*.pyc

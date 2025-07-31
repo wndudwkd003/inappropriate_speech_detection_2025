@@ -1,0 +1,20 @@
+# KANANA1_5_IT_8B = "kakaocorp/kanana-1.5-8b-instruct-2505"
+# KANANA1_5_BASE_8B = "kakaocorp/kanana-1.5-8b-base"
+# KANANA1_5_IT_32B = "LGAI-EXAONE/EXAONE-3.5-32B-Instruct"
+# KANANA1_5_IT_3B = "kakaocorp/kanana-1.5-v-3b-instruct"
+
+# "LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct"
+# "kakaocorp/kanana-1.5-2.1b-instruct-2505"
+
+# skt/kobert-base-v1
+do_sample: false
+dtype: fp16
+early_stopping: 5
+early_stopping_threshold: 0.001
+max_new_tokens: 2048
+max_seq_length: 4096
+model_id: kakaocorp/kanana-1.5-8b-instruct-2505
+
+load_in_4bit: false
+load_in_8bit: false
+full_finetune: false

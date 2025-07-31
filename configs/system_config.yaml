@@ -1,0 +1,25 @@
+is_train: true
+additional_info: "과제 1"
+seed: 42
+deterministic: false
+hf_token: ""
+use_lora: true
+use_qlora: false
+data_raw_dir: "data/rag_results" # rag 결과 디렉토리: data/rag_results, 일반 디렉토리: data/raw
+data_rag_dir: "data/rag"
+prompt_version: "task1_1"
+data_question_length_limit: -1 # 800 # -1 means no limit
+data_shuffle: false
+data_hangul_info: false
+
+# dpo 관련
+# 기존의 sft 모델 경로
+sft_model_for_dpo: ""
+
+
+# only test
+save_dir: "" # it will be set by the function
+adapter_dir: "lora_adapter"
+test_result_dir: "test_results"
+
+is_cot: false

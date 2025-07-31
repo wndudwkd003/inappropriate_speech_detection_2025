@@ -1,0 +1,78 @@
+# 출력 디렉토리 - 실행 시 자동으로 변경됨
+output_dir: "output"
+seed: 42
+
+# 학습 에폭 수
+num_train_epochs: 5
+max_steps: -1 # -1은 전체 에폭 수에 따라 자동으로 계산됨, 디버깅 용도
+
+# 배치 크기 설정
+per_device_train_batch_size: 2
+per_device_eval_batch_size: 1
+eval_accumulation_steps: 1
+gradient_accumulation_steps: 1  # GLOBAL_BATCH_SIZE // (per_device_train_batch_size * NUM_DEVICES)
+
+# 평가 및 저장 전략
+eval_strategy: "steps"  # "no", "epoch", "steps"
+save_strategy: "steps"  # "no", "epoch", "steps"
+eval_steps: 100 # 613 100
+save_steps: 100 # 613 100
+logging_steps: 25
+
+# 학습률 및 스케줄러
+learning_rate: 2.0e-5
+weight_decay: 0.1
+warmup_ratio: 0.03
+lr_scheduler_type: "cosine_with_restarts"  # "linear", "cosine", "cosine_with_restarts", "polynomial", "constant", "constant_with_warmup"
+
+# 저장 설정
+save_total_limit: 1
+logging_dir: "logs"
+
+# 리포팅
+report_to:
+  - "tensorboard"
+# 또는 report_to: null  # None인 경우
+
+# 정밀도 설정
+fp16: true
+bf16: false
+
+# 기타 학습 설정
+# packing: false
+# gradient_checkpointing: true
+# activation_offloading: false
+
+# 레이블 설정
+label_names:
+  - "labels"
+
+# 최적 모델 로드 설정
+load_best_model_at_end: true
+metric_for_best_model: "eval_loss"
+greater_is_better: false
+
+# 옵티마이저
+optim: "adamw_torch"  # "adamw_torch", "adamw_hf", "adamw_8bit", "paged_adamw_8bit"
+
+# 허브에 푸시 설정
+push_to_hub: false
+padding_value: -100  # 패딩 값 설정, -100은 일반적으로 손실 계산에서 무시됨
+
+# gradient_checkpointing : true  # 메모리 절약을 위한 그래디언트 체크포인팅
+
+
+
+# DPO 하이퍼파라미터
+# padding_value: "tokenizer.pad_token_id"
+# model_init_kwargs: {}
+# ref_model_init_kwargs: {}
+
+# beta: 0.1                 # DPO 온도 파라미터
+# loss_type: "sigmoid"      # "sigmoid" | "ipo" | "hinge" | "kto_pair"
+# label_smoothing: 0.0
+# reference_free: false     # True면 ref model 없이 학습
+# precompute_ref_log_probs: true  # ref 확률 사전 계산 (속도↑, 메모리↑)
+# max_length: 2048          # 전체 길이(프롬프트+답변)
+# max_prompt_length: 1024   # 프롬프트 부분 최대 길이
+# max_target_length: 512    # 답변 부분 최대 길이

@@ -1,0 +1,94 @@
+
+name: "llm_hyperparameter_tuning"
+num_samples: 50  # 총 실험 횟수
+max_concurrent_trials: 1  # 동시 실행할 트라이얼 수
+
+
+scheduler_type: "ASHA"  # "ASHA", "PBT", "BOHB", "MedianStopping"
+
+# ASHA 스케줄러 설정
+asha_config:
+  metric: "eval_loss"
+  mode: "min"
+  max_t: 2000  # 2000스텝으로 설정
+  grace_period: 200  # max_t의 10% 정도
+  reduction_factor: 3
+  brackets: 1
+
+
+
+# 학습률 관련
+learning_rate:
+  type: "loguniform"
+  low: 1.0e-6
+  high: 1.0e-3
+
+warmup_ratio:
+  type: "uniform"
+  low: 0.01
+  high: 0.1
+
+weight_decay:
+  type: "uniform"
+  low: 0.001
+  high: 0.1
+
+lr_scheduler_type:
+  type: "choice"
+  values: ["cosine", "cosine_with_restarts", "polynomial"]  # "linear"
+
+# 배치 크기 관련
+per_device_train_batch_size:
+  type: "choice"
+  values: [1, 2]
+
+gradient_accumulation_steps:
+  type: "choice"
+  values: [1, 2, 4, 8, 16, 32]  # GLOBAL_BATCH_SIZE // (per_device_train_batch_size * NUM_DEVICES)
+
+# LoRA 관련 파라미터
+lora_r:
+  type: "choice"
+  values: [8, 16, 32, 64, 128]
+
+lora_alpha:
+  type: "choice"
+  values: [8, 16, 32, 64, 128, 256]
+
+lora_dropout:
+  type: "uniform"
+  low: 0.0
+  high: 0.3
+
+lora_target_modules:
+  type: "choice"
+  values:
+    - ["q_proj", "v_proj"]  # 기본
+    - ["q_proj", "k_proj", "v_proj", "o_proj"]  # attention만
+    - ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]  # 전체
+    - ["gate_proj", "up_proj", "down_proj"]  # MLP만
+
+
+
+output_dir: "output_tune/results"
+local_dir: "output_tune/samples"
+
+# 체크포인트 설정
+checkpoint_config:
+  checkpoint_score_attr: "eval_loss"
+  checkpoint_freq: 1
+  num_to_keep: 2
+
+
+
+progress_reporter:
+  metric_columns: ["eval_loss", "eval_accuracy", "training_iteration"]
+  max_progress_rows: 20
+  max_error_rows: 5
+  max_column_length: 20
+
+
+best_model_selection:
+  metric: "eval_loss"
+  mode: "min"
+  scope: "all"  # "all", "last", "avg"
