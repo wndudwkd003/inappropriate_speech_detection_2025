@@ -1,4 +1,4 @@
-from src.data.base_dataset import BaseDataset, make_chat, check_limit_length
+from src.data.datasets.base_dataset import BaseDataset, check_limit_length
 from src.data.prompt_manager import PromptManager
 
 DEBUG = False
@@ -16,7 +16,7 @@ class DPODataset(BaseDataset):
             return None
 
         system_prompt = PromptManager.get_system_prompt(self.config_manager.system.prompt_version)
-        user_prompt = make_chat(sample["input"], config_manager=self.config_manager)
+        user_prompt = None # = make_chat(sample["input"], config_manager=self.config_manager)
 
         message = [
             {"role": "system", "content": system_prompt},

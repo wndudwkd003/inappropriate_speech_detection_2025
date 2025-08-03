@@ -18,3 +18,4 @@ class ModelConfig:
     # only inference
     max_new_tokens: int = 512
     do_sample: bool = False
+    num_classes: int = -1

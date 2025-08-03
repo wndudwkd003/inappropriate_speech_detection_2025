@@ -20,12 +20,13 @@ def main(config_manager: ConfigManager):
         config_manager=config_manager,
         tokenizer=trainer.tokenizer,
         task_type=CURRENT_TRAIN_TYPE,
+        is_train=True
     )
 
-    metrics = trainer.train(train_dataset, eval_dataset)
+    results = trainer.train(train_dataset, eval_dataset)
     trainer.save_adapter()
 
-    save_metrics(metrics, config_manager.sft.output_dir)
+    save_metrics(results, config_manager.sft.output_dir)
     print(f"Training completed. saved at {config_manager.sft.output_dir}")
 
 if __name__ == "__main__":

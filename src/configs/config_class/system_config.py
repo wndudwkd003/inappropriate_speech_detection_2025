@@ -25,3 +25,5 @@ class SystemConfig:
     test_result_dir: str = "test_results" # it will be set by the function
 
     is_cot: bool = False
+    only_decode: bool = True
+    perspective_count: int = 1

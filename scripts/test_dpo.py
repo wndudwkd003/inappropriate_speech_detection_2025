@@ -5,7 +5,7 @@ from unsloth import FastLanguageModel
 import os, json, argparse, hashlib
 from src.configs.config_manager import ConfigManager
 from src.data.prompt_manager import PromptManager
-from src.data.base_dataset import make_chat
+from data.datasets.base_dataset import make_chat
 from src.utils.huggingface_utils import init_hub_env
 from tqdm.auto import tqdm
 from datetime import datetime

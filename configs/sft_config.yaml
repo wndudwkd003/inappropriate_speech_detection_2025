@@ -1,6 +1,6 @@
 # 출력 디렉토리 - 실행 시 자동으로 변경됨
 output_dir: "output"
-seed: 42
+seed: 2025
 
 # 학습 에폭 수
 num_train_epochs: 5
@@ -15,8 +15,8 @@ gradient_accumulation_steps: 1  # GLOBAL_BATCH_SIZE // (per_device_train_batch_s
 # 평가 및 저장 전략
 eval_strategy: "steps"  # "no", "epoch", "steps"
 save_strategy: "steps"  # "no", "epoch", "steps"
-eval_steps: 100 # 613 100
-save_steps: 100 # 613 100
+eval_steps: 50 # 613 100
+save_steps: 50 # 613 100
 logging_steps: 25
 
 # 학습률 및 스케줄러

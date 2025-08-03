@@ -9,12 +9,14 @@
 # skt/kobert-base-v1
 do_sample: false
 dtype: fp16
-early_stopping: 5
+early_stopping: null  # null or -1 or int
 early_stopping_threshold: 0.001
-max_new_tokens: 2048
-max_seq_length: 4096
-model_id: skt/kobert-base-v1
+max_new_tokens: 4096
+max_seq_length: 8192 # 4096
+model_id: "kakaocorp/kanana-1.5-8b-base"
 
 load_in_4bit: false
 load_in_8bit: false
 full_finetune: false
+
+num_classes: -1

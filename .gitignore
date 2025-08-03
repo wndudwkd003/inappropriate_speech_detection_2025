@@ -5,6 +5,7 @@ logs/
 output/
 output_backup/
 output_tune/
+output_llm/
 unsloth_compiled_cache/
 
 !src/data/
