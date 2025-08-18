@@ -27,3 +27,5 @@ class SystemConfig:
     is_cot: bool = False
     only_decode: bool = True
     perspective_count: int = 1
+    dt_sp_number: bool = False
+    use_cache: bool = True

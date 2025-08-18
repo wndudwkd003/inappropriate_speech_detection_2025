@@ -129,6 +129,7 @@ def main(cm: ConfigManager):
 
     # 어댑터 로드
     model = fast_model.for_inference(model)
+    # model.config.use_cache = False
 
     if not cm.model.full_finetune and cm.system.only_decode:
         model.load_adapter(cm.system.adapter_dir)
@@ -148,6 +149,8 @@ def main(cm: ConfigManager):
         task_type=CURRENT_TEST_TYPE,
         is_train=False
     )
+
+    print(f"Test dataset size: {len(test_dataset)}")
 
     # 결과를 document_id별로 그룹화할 딕셔너리
     document_results = defaultdict(lambda: {"id": "", "input": {}, "output": []})
@@ -169,6 +172,7 @@ def main(cm: ConfigManager):
                 max_new_tokens=cm.model.max_new_tokens,
                 do_sample=cm.model.do_sample,
                 attention_mask=attention_mask,
+                use_cache=cm.system.use_cache,
             )
 
             # 답변 추출

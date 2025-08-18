@@ -23,6 +23,9 @@ def main(config_manager: ConfigManager):
         is_train=True
     )
 
+    print(f"Train dataset size: {len(train_dataset)}")
+    print(f"Eval dataset size: {len(eval_dataset)}")
+
     results = trainer.train(train_dataset, eval_dataset)
     trainer.save_adapter()
 

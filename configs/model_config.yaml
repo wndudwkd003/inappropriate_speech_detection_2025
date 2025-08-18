@@ -1,10 +1,10 @@
 # KANANA1_5_IT_8B = "kakaocorp/kanana-1.5-8b-instruct-2505"
 # KANANA1_5_BASE_8B = "kakaocorp/kanana-1.5-8b-base"
-# KANANA1_5_IT_32B = "LGAI-EXAONE/EXAONE-3.5-32B-Instruct"
-# KANANA1_5_IT_3B = "kakaocorp/kanana-1.5-v-3b-instruct"
 
-# "LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct"
-# "kakaocorp/kanana-1.5-2.1b-instruct-2505"
+# naver-hyperclovax/HyperCLOVAX-SEED-Text-Instruct-1.5B
+
+
+# "LGAI-EXAONE/EXAONE-3.5-7.8B-Instruct"
 
 # skt/kobert-base-v1
 do_sample: false

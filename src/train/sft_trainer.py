@@ -25,6 +25,7 @@ class UnslothSFTTrainer(BaseTrainer):
             fast_model = FastLanguageModel
             print("Using FastLanguageModel for generation training.")
 
+        print(f"model_id: {self.cm.model.model_id}")
         self.model, self.tokenizer = fast_model.from_pretrained(
             model_name=self.cm.model.model_id,
             max_seq_length=self.cm.model.max_seq_length,

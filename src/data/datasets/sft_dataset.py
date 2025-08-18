@@ -2,7 +2,7 @@ import torch
 from src.data.prompt_manager import PromptManager
 from src.data.datasets.base_dataset import BaseDataset, check_limit_length
 
-DEBUG = False
+DEBUG = True
 
 class SFTDataset(BaseDataset):
 
@@ -59,8 +59,11 @@ class SFTDataset(BaseDataset):
             cot_data = (output or {}).get("cot", [])
             limited_cot = cot_data[:pcnt]
             think_content = ""
-            for cot_item in limited_cot:
-                think_content += f"{cot_item}\n"
+            for idx, cot_item in enumerate(limited_cot, start=1):
+                if self.config_manager.system.dt_sp_number:
+                    think_content += f"{idx}. {cot_item}\n"
+                else:
+                    think_content += f"{cot_item}\n" # f"{idx}. {cot_item}\n"
             core = f"<think>\n{think_content.strip()}</think>\n<answer>{converted_label}</answer>"
         else:
             core = str(converted_label)
@@ -92,6 +95,9 @@ class SFTDataset(BaseDataset):
         for idx, utterance in enumerate(utterances):
             current_chat_text = self.make_current_chat_text(utterance, idx)
             user_content = self._build_user_content(full_chat_text, current_chat_text)
+            if DEBUG:
+                print(f"Processing utterance {idx + 1}: {current_chat_text}")
+                print(f"User content: {user_content}")
 
             if self.config_manager.system.only_decode:
                 # ------------------------
