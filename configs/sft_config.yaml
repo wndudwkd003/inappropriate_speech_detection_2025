@@ -1,6 +1,6 @@
 # 출력 디렉토리 - 실행 시 자동으로 변경됨
 output_dir: "output"
-seed: 2025
+seed: 7412013 # 42 # 115 # 2025 # 7412013
 
 # 학습 에폭 수
 num_train_epochs: 5

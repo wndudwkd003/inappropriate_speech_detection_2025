@@ -1,9 +1,9 @@
-# src/utils/data_utils.py (혹은 해당 파일)
 import os
-from typing import TypeVar, Literal
+from typing import TypeVar
 from datasets import Dataset as HFDataset
 from src.configs.config_manager import ConfigManager
 from src.data.dataset_factory import DatasetFactory
+from datasets import Dataset as HFDataset
 
 T = TypeVar("T")
 
@@ -12,14 +12,13 @@ def convert_hf(ds):
 
 def prepare_dataset(
         config_manager: ConfigManager,
-        tokenizer,
-        task_type: str = "sft",
-        is_train: bool = True,
-        eval_split: Literal["dev", "test"] = "test",   # ★ 추가: 평가 split 선택
+        tokenizer, task_type: str = "sft",
+        is_train: bool = True
 ):
     prompt_version = config_manager.system.prompt_version
     print("Current prompt version:", prompt_version)
 
+    # 공통 인자 정리
     common_args = dict(
         dataset_type=task_type,
         tokenizer=tokenizer,
@@ -33,9 +32,10 @@ def prepare_dataset(
             data_shuffle=config_manager.system.data_shuffle,
             **common_args
         )
+
         eval_dataset = DatasetFactory.create_dataset(
             fname=os.path.join(config_manager.system.data_raw_dir, "dev.json"),
-            data_shuffle=False,
+            data_shuffle=False, # 평가 데이터는 셔플하지 않음
             **common_args
         )
 
@@ -46,12 +46,11 @@ def prepare_dataset(
 
         return train_dataset, eval_dataset
 
+
     else:
-        # ★ 여기서 split을 선택할 수 있게 변경
-        fname = "dev.json" if eval_split == "dev" else "test.json"
         test_dataset = DatasetFactory.create_dataset(
-            fname=os.path.join(config_manager.system.data_raw_dir, fname),
-            data_shuffle=False,
+            fname=os.path.join(config_manager.system.data_raw_dir, "test.json"),
+            data_shuffle=False,  # 테스트 데이터는 셔플하지 않음
             **common_args
         )
 
@@ -60,3 +59,4 @@ def prepare_dataset(
             test_dataset = convert_hf(test_dataset)
 
         return test_dataset
+
